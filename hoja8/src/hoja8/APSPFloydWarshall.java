@@ -57,7 +57,12 @@ public class APSPFloydWarshall {
 			System.out.println();
 		}
 		
-		iFile.close();		
+		iFile.close();	
+                GraphCenter centro = new GraphCenter();
+                
+                System.out.println("CENTRO DEL GRAFO: "+graph.getNodeAt(centro.centroGrafo(adjMatrix)));
+               
 	}
+        
 
 }
