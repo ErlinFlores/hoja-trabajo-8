@@ -17,6 +17,7 @@ public class Edge {
 		this.a = a;
 		this.b = b;
 		this.weight = weight;
+                
 	}
 	
 	public double getWeight() {
@@ -26,5 +27,12 @@ public class Edge {
 	public String toString() {
 		return a + " ==> " + b;
 	}
+        public Node getOrigen(){
+            return a;
+        }
+        public Node getDestino(){
+            return b;
+        }
+        
 
 }
