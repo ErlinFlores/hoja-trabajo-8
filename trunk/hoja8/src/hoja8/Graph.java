@@ -24,7 +24,7 @@ public class Graph {
 			
 			for(int j = 0; j < edges.size(); j++) {
 				Edge edge = edges.elementAt(j);
-				
+                                //System.out.println(edge.toString()+" "+edge.getWeight());
 				if(edge.a == node) {
 					int indexOfNeighbor = nodes.indexOf(edge.b);
 					
@@ -32,10 +32,21 @@ public class Graph {
 				}
 			}
 		}
-		
+                //imprimeMatriz(adjMatrix);
+                
 		return adjMatrix;
 	}
 	
+        public void imprimeMatriz(double[][] adjMatrix){
+            for(int i = 0; i < nodes.size(); i++) {
+                System.out.println();
+		for(int j = 0; j < nodes.size(); j++) 
+                    {
+                        System.out.printf("[%f]",adjMatrix[i][j]);
+                    }
+            }
+            
+        }
 	public void setDirected() {
 		directed = true;
 	}
@@ -99,7 +110,7 @@ public class Graph {
 		
 		return neighbors;
 	}
-	
+            
 	public int addNode(Node a) {
 		nodes.add(a);
 		
@@ -120,5 +131,32 @@ public class Graph {
 	public void printEdges() {
 		System.out.println(edges);
 	}
+        public void eliminaArista(String nodo1,String nodo2){
+            Node x=null;
+            Node y=null;
+            int indice=0;
+            for(int i=0;i<nodes.size();i++){
+                if(nodo1.equals(nodes.get(i).toString()))
+                   x=nodes.get(i); 
+                if(nodo2.equals(nodes.get(i).toString()))
+                   y=nodes.get(i); 
+
+            }
+            for(int i=0;i<edges.size();i++){
+                if(x.equals(edges.get(i).getOrigen()))
+                {     
+                    if(y.equals(edges.get(i).getDestino()))
+                           edges.remove(i); 
+                }   
+            }         
+                      
+ 
+        }
+        public Node getNodeByName(String name){
+            for(int i=0;i<nodes.size();i++)
+                if(name.equals(nodes.get(i).toString()))
+                    return nodes.get(i);
+            return null;
+        }
 
 }
