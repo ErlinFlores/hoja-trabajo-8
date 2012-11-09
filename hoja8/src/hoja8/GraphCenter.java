@@ -34,7 +34,6 @@ public class GraphCenter {
        for(int i=0;i<matrix.length;i++)
            if(tempo.equals(maximos.get(i)))
                min = i;
-       System.out.println(min);
        return min;
      }
     

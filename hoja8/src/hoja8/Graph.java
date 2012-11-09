@@ -7,6 +7,7 @@ public class Graph {
 	protected Vector<Edge> edges = new Vector<Edge>();
 	protected boolean directed = false;
 	protected boolean sortedNeighbors = false;
+        protected double[][] mat;
 	
 	public double[][] getAdjacencyMatrix() {
 		double[][] adjMatrix = new double[nodes.size()][nodes.size()];
@@ -32,7 +33,7 @@ public class Graph {
 				}
 			}
 		}
-                //imprimeMatriz(adjMatrix);
+        //        imprimeMatriz(adjMatrix);
                 
 		return adjMatrix;
 	}
@@ -57,15 +58,7 @@ public class Graph {
 	
 	public boolean isDirected() {
 		return directed;
-	}
-	
-	public boolean isSortedNeighbors() {
-		return sortedNeighbors;
-	}
-	
-	public void setSortedNeighbors(boolean flag) {
-		sortedNeighbors = flag;
-	}
+	} 
 	
 	public int indexOf(Node a) {
 		for(int i = 0; i < nodes.size(); i++)
@@ -86,12 +79,7 @@ public class Graph {
 	public Node getNodeAt(int i) {
 		return nodes.elementAt(i);
 	}
-	
-	public void unvisitAllNodes() {
-		for(int i = 0; i < nodes.size(); i++)
-			nodes.elementAt(i).unvisit();
-	}
-	
+		
 	public Vector<Node> getNeighbors(Node a) {
 		Vector<Node> neighbors = new Vector<Node>();
 		
@@ -148,8 +136,7 @@ public class Graph {
                     if(y.equals(edges.get(i).getDestino()))
                            edges.remove(i); 
                 }   
-            }         
-                      
+            }                               
  
         }
         public Node getNodeByName(String name){
@@ -158,5 +145,42 @@ public class Graph {
                     return nodes.get(i);
             return null;
         }
-
+        public void setMatrixPath(double[][] mat){
+            this.mat = mat;
+        }
+        public double[][] getMatrixPath(){
+            return this.mat;
+        }
+        public int[][] floydReconstruction(double[][] matriz ){
+            double matrix[][]  = matriz;            
+            int next[][] = new int[matrix.length][matrix.length];
+            
+            for(int k=1;k<matrix.length;k++){
+               for(int i=1;i<matrix.length;i++){
+                   next[k][i]=k;                       
+               }
+            }            
+            
+            for(int k=1;k<matrix.length;k++){
+               for(int i=1;i<matrix.length;i++){
+                   for(int j=1;j<matrix.length;j++){
+                       if((matrix[i][k]+matrix[k][j])<matrix[i][j]){
+                           matrix[i][j]=matrix[i][k]+matrix[k][j];
+                           next[i][j] = next[k][j];                           
+                           next[j][i] = next[k][i];                                                      
+                       }
+                   }
+               }
+            }   
+            setMatrixPath(matrix);
+            return next;
+        }
+        public void path(int i,int j, int[][] next){
+            if(i!=j){
+                path(i,next[i][j],next);
+            }
+            System.out.print(getNodeAt(j)+" ");
+        }
+        
+        
 }
