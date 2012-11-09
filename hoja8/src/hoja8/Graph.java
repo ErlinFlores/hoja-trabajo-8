@@ -1,33 +1,46 @@
+//****************************************************************
+// Autor:   Yimy Juarez 
+//          Gustavo Castro
+//          Ulil Cojti
+// 
+// Universidad del Valle de Guatemala 
+// Algoritmos y estructuras de datos
+// Seccion: 10
+// Nombre del Archivo: Graph.java
+// Fecha de Modificacion:08/11/2012
+// Descripcion: 
+// Clase que representa la matriz de adyacencia de un grafo
+// ***************************************************************
 package hoja8;
 import java.util.*;
 
 public class Graph {
 
-	protected Vector<Node> nodes = new Vector<Node>();
-	protected Vector<Edge> edges = new Vector<Edge>();
-	protected boolean directed = false;
-	protected boolean sortedNeighbors = false;
-        protected double[][] mat;
+	protected Vector<Node> Nodes = new Vector<Node>();
+	protected Vector<Edge> Edges = new Vector<Edge>();
+	protected boolean Directed = false;
+	protected boolean sortedNEighbors = false;
+        protected double[][] math;
 	
 	public double[][] getAdjacencyMatrix() {
-		double[][] adjMatrix = new double[nodes.size()][nodes.size()];
+		double[][] adjMatrix = new double[Nodes.size()][Nodes.size()];
 		
-		for(int i = 0; i < nodes.size(); i++)
-			for(int j = 0; j < nodes.size(); j++)
+		for(int i = 0; i < Nodes.size(); i++)
+			for(int j = 0; j < Nodes.size(); j++)
 				if(i == j)
 					adjMatrix[i][j] = 0;
 				else
 					adjMatrix[i][j] = Double.POSITIVE_INFINITY;
 				
-		for(int i = 0; i < nodes.size(); i++) {
-			Node node = nodes.elementAt(i);
+		for(int i = 0; i < Nodes.size(); i++) {
+			Node node = Nodes.elementAt(i);
 			//System.out.println("Current node: " + node);
 			
-			for(int j = 0; j < edges.size(); j++) {
-				Edge edge = edges.elementAt(j);
+			for(int j = 0; j < Edges.size(); j++) {
+				Edge edge = Edges.elementAt(j);
                                 //System.out.println(edge.toString()+" "+edge.getWeight());
 				if(edge.a == node) {
-					int indexOfNeighbor = nodes.indexOf(edge.b);
+					int indexOfNeighbor = Nodes.indexOf(edge.b);
 					
 					adjMatrix[i][indexOfNeighbor] = edge.weight;
 				}
@@ -39,9 +52,9 @@ public class Graph {
 	}
 	
         public void imprimeMatriz(double[][] adjMatrix){
-            for(int i = 0; i < nodes.size(); i++) {
+            for(int i = 0; i < Nodes.size(); i++) {
                 System.out.println();
-		for(int j = 0; j < nodes.size(); j++) 
+		for(int j = 0; j < Nodes.size(); j++) 
                     {
                         System.out.printf("[%f]",adjMatrix[i][j]);
                     }
@@ -49,107 +62,107 @@ public class Graph {
             
         }
 	public void setDirected() {
-		directed = true;
+		Directed = true;
 	}
 	
 	public void setUndirected() {
-		directed = false;
+		Directed = false;
 	}
 	
 	public boolean isDirected() {
-		return directed;
+		return Directed;
 	} 
 	
 	public int indexOf(Node a) {
-		for(int i = 0; i < nodes.size(); i++)
-			if(nodes.elementAt(i).data.equals(a.data))
+		for(int i = 0; i < Nodes.size(); i++)
+			if(Nodes.elementAt(i).data.equals(a.data))
 				return i;
 				
 		return -1;
 	}
 	
 	public Vector<Node> getNodes() {
-		return nodes;
+		return Nodes;
 	}
 	
 	public Vector<Edge> getEdges() {
-		return edges;
+		return Edges;
 	}
 	
 	public Node getNodeAt(int i) {
-		return nodes.elementAt(i);
+		return Nodes.elementAt(i);
 	}
 		
 	public Vector<Node> getNeighbors(Node a) {
 		Vector<Node> neighbors = new Vector<Node>();
 		
-		for(int i = 0; i < edges.size(); i++) {
-			Edge edge = edges.elementAt(i);
+		for(int i = 0; i < Edges.size(); i++) {
+			Edge edge = Edges.elementAt(i);
 			
 			if(edge.a == a)
 				neighbors.add(edge.b);
 				
-			if(!directed && edge.b == a)
+			if(!Directed && edge.b == a)
 				neighbors.add(edge.a);
 		}
 		
-		if(sortedNeighbors)
+		if(sortedNEighbors)
 			Collections.sort(neighbors);
 		
 		return neighbors;
 	}
             
 	public int addNode(Node a) {
-		nodes.add(a);
+		Nodes.add(a);
 		
-		return nodes.size() - 1;
+		return Nodes.size() - 1;
 	}
 	
 	public void addEdge(Edge a) {
-		edges.add(a);
+		Edges.add(a);
 		
-		if(!directed)
-			edges.add(new Edge(a.b, a.a, a.weight));
+		if(!Directed)
+			Edges.add(new Edge(a.b, a.a, a.weight));
 	}
 	
 	public void printNodes() {
-		System.out.println(nodes);
+		System.out.println(Nodes);
 	}
 	
 	public void printEdges() {
-		System.out.println(edges);
+		System.out.println(Edges);
 	}
         public void eliminaArista(String nodo1,String nodo2){
             Node x=null;
             Node y=null;
             int indice=0;
-            for(int i=0;i<nodes.size();i++){
-                if(nodo1.equals(nodes.get(i).toString()))
-                   x=nodes.get(i); 
-                if(nodo2.equals(nodes.get(i).toString()))
-                   y=nodes.get(i); 
+            for(int i=0;i<Nodes.size();i++){
+                if(nodo1.equals(Nodes.get(i).toString()))
+                   x=Nodes.get(i); 
+                if(nodo2.equals(Nodes.get(i).toString()))
+                   y=Nodes.get(i); 
 
             }
-            for(int i=0;i<edges.size();i++){
-                if(x.equals(edges.get(i).getOrigen()))
+            for(int i=0;i<Edges.size();i++){
+                if(x.equals(Edges.get(i).getOrigen()))
                 {     
-                    if(y.equals(edges.get(i).getDestino()))
-                           edges.remove(i); 
+                    if(y.equals(Edges.get(i).getDestino()))
+                           Edges.remove(i); 
                 }   
             }                               
  
         }
         public Node getNodeByName(String name){
-            for(int i=0;i<nodes.size();i++)
-                if(name.equals(nodes.get(i).toString()))
-                    return nodes.get(i);
+            for(int i=0;i<Nodes.size();i++)
+                if(name.equals(Nodes.get(i).toString()))
+                    return Nodes.get(i);
             return null;
         }
         public void setMatrixPath(double[][] mat){
-            this.mat = mat;
+            this.math = mat;
         }
         public double[][] getMatrixPath(){
-            return this.mat;
+            return this.math;
         }
         public int[][] floydReconstruction(double[][] matriz ){
             double matrix[][]  = matriz;            

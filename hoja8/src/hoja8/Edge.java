@@ -1,3 +1,17 @@
+//****************************************************************
+// Autor:   Yimy Juarez 
+//          Gustavo Castro
+//          Ulil Cojti
+// 
+// Universidad del Valle de Guatemala 
+// Algoritmos y estructuras de datos
+// Seccion: 10
+// Nombre del Archivo: principal.java
+// Fecha de Modificacion:08/11/2012
+// Descripcion: 
+// Clase que representa la conexion entre nodos y su peso 
+// ***************************************************************
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.

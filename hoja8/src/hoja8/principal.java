@@ -1,8 +1,17 @@
-/*
- * Universidad del Valle de Guatemala 
- * Algoritmos y estructuras de datos
- * 
- */
+//****************************************************************
+// Autor:   Yimy Juarez 
+//          Gustavo Castro
+//          Ulil Cojti
+// 
+// Universidad del Valle de Guatemala 
+// Algoritmos y estructuras de datos
+// Seccion: 10
+// Nombre del Archivo: principal.java
+// Fecha de Modificacion:08/11/2012
+// Descripcion: 
+// Clase que interactua con el arfchivo, y trabaja con la matriz de adyacencia 
+// ***************************************************************
+
 package hoja8;
 
 import java.util.*;
