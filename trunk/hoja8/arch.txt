@@ -1,11 +1,6 @@
-cebu manila 4
-davao cebu 2
-manila davao 1
-davao ilo_ilo 1
-ilo_ilo cebu 1
-manila ilo_ilo 3
-davao palawan 3
-ilo_ilo palawan 1
-manila palawan 2
-cebu palawan 5
-manila cebu 1
+guate quiche 3
+quiche solola 2
+antigua guate 4
+peten jalapa 2
+jalapa guate 1
+guate antigua 7

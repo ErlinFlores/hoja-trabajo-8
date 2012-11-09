@@ -1,6 +1,7 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Universidad del Valle de Guatemala 
+ * Algoritmos y estructuras de datos
+ * 
  */
 package hoja8;
 
@@ -9,11 +10,8 @@ import java.io.*;
 import java.lang.String;
 
 
-// Written by: Yancy Vance M. Paredes.
 
-// Finding all-pairs shortest path using Floyd Warshall's algorithm.
-
-public class APSPFloydWarshall {
+public class principal {
         
     public void lecturaArchivo(Scanner iFile, Graph graph){
         		while(iFile.hasNext()) {
@@ -23,11 +21,9 @@ public class APSPFloydWarshall {
 			int aPos = graph.indexOf(a);
 			int bPos = graph.indexOf(b);
 			
-			// If a does not exist in the graph yet.
 			if(aPos == -1)
 				aPos = graph.addNode(a);
 			
-			// If b does not exist in the graph yet.
 			if(bPos == -1)
 				bPos = graph.addNode(b);
 			
@@ -51,14 +47,6 @@ public class APSPFloydWarshall {
                 y = graph.indexOf(graph.getNodeByName(ciudad2));
                 
                 System.out.println("EL CAMINO MAS CORTO DESDE: " +ciudad1+" HASTA: "+ciudad2+" ES: "+adjMatrix[x][y]);
-/**                for(int i = 0; i < adjMatrix.length; i++) {
-			System.out.println("From " + graph.getNodeAt(i) + ":");
-			
-			for(int j = 0; j < adjMatrix.length; j++)
-				System.out.println("\tShortest Path Cost to " + graph.getNodeAt(j) + " is: " + adjMatrix[i][j]);
-			
-			System.out.println();
-		}*/
 
     }
     public void eliminaCamino(BufferedReader entradaEstandar, Graph graph, String nodo1, String nodo2) throws IOException{
@@ -87,12 +75,12 @@ public class APSPFloydWarshall {
               graph.addEdge(arista);              
 
     }
-    public void pideDatos(BufferedReader entradaEstandar, Graph graph,APSPFloydWarshall aps) throws IOException{
+    public void pideDatos(BufferedReader entradaEstandar, Graph graph,principal aps) throws IOException{
                 String interrup="",conexion="";
                 String nodo1="",nodo2="";
                 String inicio="",fin="";
                 String resp="";
-                double adjMatrix[][]; 
+                double adjMatrix[][],tempo[][]; 
                 do{
                     adjMatrix = graph.getAdjacencyMatrix();		                               
                     System.out.println("INGRESE LUGAR DE PARTIDA");
@@ -113,11 +101,20 @@ public class APSPFloydWarshall {
                         aps.estableceConexion(entradaEstandar,graph);
 
                     }
-                    aps.actualizaMatrices(graph.getAdjacencyMatrix(),graph,inicio,fin);
+                    adjMatrix=graph.getAdjacencyMatrix();
+                    tempo = adjMatrix;
+                    graph.path(graph.indexOf(graph.getNodeByName(inicio)), graph.indexOf(graph.getNodeByName(fin)), graph.floydReconstruction(tempo));                                        
+ 
+//                    graph.imprimeMatriz(tempo);
+                    aps.actualizaMatrices(adjMatrix,graph,inicio,fin);
 
+//                    graph.imprimeMatriz(adjMatrix);
                     System.out.println("CENTRO DEL GRAFO: "+graph.getNodeAt(centro.centroGrafo(adjMatrix)));
                     System.out.println("Desea continuar s/n:");
                     resp = entradaEstandar.readLine();
+                    
+                    System.out.println();
+                    
                 }
                 while(resp.equals("s"));
                 
@@ -128,11 +125,10 @@ public class APSPFloydWarshall {
 
 		Graph graph = new Graph();
 		graph.setDirected();		
-                APSPFloydWarshall aps = new APSPFloydWarshall();
+                principal aps = new principal();
                 aps.lecturaArchivo(iFile,graph);                	
                 aps.pideDatos(entradaEstandar, graph,aps);
-		iFile.close();	                
-                
+		iFile.close();	                               
                
     }
         
