@@ -1,3 +1,16 @@
+//****************************************************************
+// Autor:   Yimy Juarez 
+//          Gustavo Castro
+//          Ulil Cojti
+// 
+// Universidad del Valle de Guatemala 
+// Algoritmos y estructuras de datos
+// Seccion: 10
+// Nombre del Archivo: GraphCenter.java
+// Fecha de Modificacion:08/11/2012
+// Descripcion: 
+// Clase que determina cual es el centro de un grafo
+// ***************************************************************
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
